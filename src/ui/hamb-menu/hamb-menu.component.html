@@ -1,0 +1,50 @@
+<div class="nav-container2" [ngClass]="status ? 'active' : 'close'">
+  <div class="nav-link-wrapper cont-vert-between">
+    <div class="menu-tab cont-vert-between-start">
+      <!-- Меню -->
+      <div class="cont-vert-between-start">
+        <li class="nav-item">
+          <a><b>Регистрация</b></a>
+        </li>
+        <li class="nav-item">
+          <a href="#"><b>Вход</b></a>
+        </li>
+        <li class="nav-item"><a href="#">О компании</a></li>
+        <li class="nav-item"><a href="#">Помощь</a></li>
+      </div>
+      <br />
+      <div class="div-qr">
+        <b>Приложение OCPIO</b><br />
+        <img src="img/1.8_u_a/qr-kod-1.png" class="qr-kod-1" /><br />
+        Наведите камеру, чтобы скачать приложение
+      </div>
+    </div>
+  </div>
+  <!-- Футер -->
+  <div class="menu-footer cont-vert-around">
+    <div class="foo-menu-text">Скачать приложение OCPIO</div>
+    <div class="foo-menu-line-ico cont-horiz-around">
+      <div><img src="img/1.8_u_a/GooglePlay.png" /></div>
+      <div><img src="img/1.8_u_a/AppStore.png" /></div>
+      <div><img src="img/1.8_u_a/Huawei.png" /></div>
+      <div class="btn-black">Скачать с сайта</div>
+    </div>
+  </div>
+</div>
+<!-- Иконка Меню - крестик -->
+<div class="hamburger-icon" (click)="clickEvent()">
+  <div class="toggle2">
+    <!-- partial:index.partial.html -->
+    <div class="container">
+      <div
+        class="menu btn1"
+        data-menu="1"
+        [ngClass]="status ? 'open' : 'close'"
+      >
+        <div class="icon-left"></div>
+        <div class="icon-right"></div>
+      </div>
+    </div>
+    <!-- partial -->
+  </div>
+</div>
