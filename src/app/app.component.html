@@ -4,7 +4,7 @@
       <img src="img/logo-ocpio.png" class="logo" />
     </div>
     <div class="cont-horiz">
-      <div class="green-btn gb-st1 none768">
+      <div class="green-btn gb-st1 none768" (click)="openPopUp()">
         <p>Регистрация</p>
       </div>
       <div class="cont-horiz white-btn">
@@ -5114,3 +5114,5 @@
     </div>
   </div>
 </div>
+
+<app-registration *ngIf="isOpen | async"></app-registration>
