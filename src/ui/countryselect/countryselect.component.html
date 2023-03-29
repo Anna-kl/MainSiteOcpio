@@ -1,0 +1,18 @@
+<!-- <img src="../../assets/img/flag_rus.png" class="flag" />
+<img src="../../assets/img/bottom.png" /> -->
+<div class="city__selected" (click)="isOpen = !isOpen">
+  <img src="../../assets/img/flag_rus.png" class="flag" #selectedDiv />
+  <img src="../../assets/img/bottom.png" />
+</div>
+
+<ul class="city__list" [class.city__list_active]="isOpen">
+  <li
+    class="city__list-item"
+    *ngFor="let item of data$ | async"
+    (click)="onSelectItem($event)"
+    [value]="item.id"
+  >
+    <img src="../../assets/img/flag_rus.png" class="flag" />
+    <span>{{ item.code }}{{ item.mask }}</span>
+  </li>
+</ul>

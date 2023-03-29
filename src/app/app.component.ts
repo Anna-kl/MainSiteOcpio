@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { PopUpService } from 'src/services/pop-up.service';
+import { PopUpService } from 'src/services/pop-up/pop-up.service';
 
 @Component({
   selector: 'app-root',

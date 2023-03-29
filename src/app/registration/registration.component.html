@@ -7,30 +7,32 @@
       Войдите с помощью <br />
       номера телефона
     </h2>
-    <div class="phone cont-horiz-start">
-      <img src="../../assets/img/flag_rus.png" class="flag" />
-      <img src="../../assets/img/bottom.png" />
-      <div class="v-line"></div>
-      <div class="input-text">+7 (903) 123-45-67</div>
-    </div>
-    <div class="cont-horiz-start">
-      <div>
-        <!--подкатегория -->
-        <input
-          class="custom-checkbox"
-          type="checkbox"
-          id="stapelnye-raboty"
-          name="#"
-          value="#"
-        />
-        <label for="stapelnye-raboty">
-          <p>
-            Согласен с
-            <span style="color: #67c4b2"> правилами и условиями </span>
-          </p>
-        </label>
+    <form [formGroup]="firstPopUp" (ngSubmit)="onSubmit()">
+      <div class="phone cont-horiz-start">
+        <app-countryselect formControlName="country"></app-countryselect>
+        <div class="v-line"></div>
+        <app-phone-input formControlName="phone"></app-phone-input>
       </div>
-    </div>
+      <div class="cont-horiz-start">
+        <div>
+          <!--подкатегория -->
+          <input
+            class="custom-checkbox"
+            type="checkbox"
+            id="stapelnye-raboty"
+            name="#"
+            value="#"
+            formControlName="checkbox"
+          />
+          <label for="stapelnye-raboty">
+            <p>
+              Согласен с
+              <span style="color: #67c4b2"> правилами и условиями </span>
+            </p>
+          </label>
+        </div>
+      </div>
+    </form>
     <div
       class="btn2 button-text cont-vert"
       style="width: 50%"
@@ -57,15 +59,15 @@
         >
           на номер:
         </div>
-        <p class="phone-text">+7 (903) 123-45-67</p>
+        <p class="phone-text">{{ firstPopUp.value.phone }}</p>
       </div>
     </div>
-    <div class="cont-horiz">
-      <input class="sms" type="text" placeholder="0" />
-      <input class="sms" type="text" placeholder="0" />
-      <input class="sms" type="text" placeholder="0" />
-      <input class="sms" type="text" placeholder="0" />
-    </div>
+    <form class="cont-horiz">
+      <input class="sms" type="text" placeholder="0" appAutoTab maxlength="1" />
+      <input class="sms" type="text" placeholder="0" appAutoTab maxlength="1" />
+      <input class="sms" type="text" placeholder="0" appAutoTab maxlength="1" />
+      <input class="sms" type="text" placeholder="0" appAutoTab maxlength="1" />
+    </form>
     <div class="cont-vert">
       <div class="btn-white" style="width: 100%">Прислать код повторно</div>
       <div
@@ -83,26 +85,29 @@
     [ngClass]="{ hidden: activePopUpId !== 2 }"
   >
     <div class="type-name">Представьтесь,&nbsp;пожалуйста</div>
-    <input class="fio fio-text" type="text" placeholder="Имя" />
-    <input class="fio fio-text" type="text" placeholder="Фамилия" />
-    <div class="cont-horiz-start">
-      <div>
-        <!-- Чекбокс -->
-        <input
-          class="custom-checkbox"
-          type="checkbox"
-          id="stapelnye-raboty"
-          name="#"
-          value="#"
-        />
-        <label for="stapelnye-raboty">
-          <p>
-            Согласен с
-            <span style="color: #67c4b2"> правилами и условиями </span>
-          </p>
-        </label>
+    <form>
+      <input class="fio fio-text" type="text" placeholder="Имя" />
+      <input class="fio fio-text" type="text" placeholder="Фамилия" />
+
+      <div class="cont-horiz-start">
+        <div>
+          <!-- Чекбокс -->
+          <input
+            class="custom-checkbox"
+            type="checkbox"
+            id="stapelnye-raboty"
+            name="#"
+            value="#"
+          />
+          <label for="stapelnye-raboty">
+            <p>
+              Согласен с
+              <span style="color: #67c4b2"> правилами и условиями </span>
+            </p>
+          </label>
+        </div>
       </div>
-    </div>
+    </form>
     <div class="btn2 button-text" style="width: 80%" (click)="nextPopUp()">
       Продолжить
     </div>

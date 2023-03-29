@@ -1,0 +1,9 @@
+:host {
+  height: 100%;
+}
+input[type="tel"] {
+  margin: 0;
+  padding: 0;
+  border: none;
+  height: 100%;
+}

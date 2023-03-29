@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { PopUpService } from 'src/services/pop-up.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PopUpService } from 'src/services/pop-up/pop-up.service';
 
 @Component({
   selector: 'app-registration',
@@ -10,8 +10,9 @@ import { PopUpService } from 'src/services/pop-up.service';
 export class RegistrationComponent {
   activePopUpId = 0;
   firstPopUp = new FormGroup({
-    phone: new FormControl(''),
-    checkbox: new FormControl(''),
+    country: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
+    checkbox: new FormControl('', Validators.required),
   });
   constructor(private PopUpService: PopUpService) {}
   nextPopUp(): void {
@@ -20,5 +21,8 @@ export class RegistrationComponent {
   closePopUp(): void {
     this.PopUpService.updateItems(false);
     this.activePopUpId = 0;
+  }
+  onSubmit() {
+    console.log(this.firstPopUp.value);
   }
 }
