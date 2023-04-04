@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  Input,
   OnDestroy,
   ViewChild,
 } from '@angular/core';
@@ -45,7 +46,7 @@ export class PhoneInputComponent
   }
   subscriptions$: Subscription[] = [];
 
-  @ViewChild('input', { static: false }) input: ElementRef;
+  @ViewChild('input', { static: false }) input!: ElementRef;
 
   ngAfterViewInit(): void {
     let subsctiption = fromEvent(this.input.nativeElement, 'keyup')

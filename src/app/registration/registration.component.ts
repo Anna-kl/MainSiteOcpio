@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PopUpService } from 'src/services/pop-up/pop-up.service';
+import { IData } from '../../ui/countryselect/countryselect.component';
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +11,7 @@ import { PopUpService } from 'src/services/pop-up/pop-up.service';
 export class RegistrationComponent {
   activePopUpId = 0;
   firstPopUp = new FormGroup({
-    country: new FormControl('', Validators.required),
+    country: new FormControl({} as IData, Validators.required),
     phone: new FormControl('', Validators.required),
     checkbox: new FormControl('', Validators.required),
   });

@@ -34,7 +34,7 @@ export interface IData {
 export class CountryselectComponent
   implements OnInit, OnDestroy, ControlValueAccessor
 {
-  @ViewChild('selectedDiv') selectedDiv: ElementRef;
+  @ViewChild('selectedImg') selectedImg!: ElementRef;
   data$: BehaviorSubject<IData[]> = this.httpService.getItems$();
   value!: string;
   isOpen = false;
@@ -76,7 +76,7 @@ export class CountryselectComponent
     });
     this.onChange(item);
     if (item) {
-      this.selectedDiv.nativeElement.src = item.icon;
+      this.selectedImg.nativeElement.src = item.icon;
       this.isOpen = !this.isOpen;
     }
   }
