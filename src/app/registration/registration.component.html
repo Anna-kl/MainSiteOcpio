@@ -7,7 +7,7 @@
       Войдите с помощью <br />
       номера телефона
     </h2>
-    <form [formGroup]="firstPopUp" (ngSubmit)="onSubmit(firstPopUp)">
+    <form [formGroup]="firstPopUp" (ngSubmit)="onSubmit()">
       <div class="phone cont-horiz-start">
         <app-countryselect formControlName="country"></app-countryselect>
         <div class="v-line"></div>
@@ -39,7 +39,7 @@
     <div
       class="btn2 button-text cont-vert"
       style="width: 50%"
-      (click)="onSubmit(firstPopUp)"
+      (click)="onSubmit()"
     >
       Далее
     </div>

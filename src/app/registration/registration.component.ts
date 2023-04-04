@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpService } from 'src/services/http/http.service';
 import { PopUpService } from 'src/services/pop-up/pop-up.service';
 import { IData } from '../../ui/countryselect/countryselect.component';
 
@@ -16,7 +17,10 @@ export class RegistrationComponent implements OnInit {
     phone: new FormControl('', Validators.required),
     checkbox: new FormControl('', Validators.required),
   });
-  constructor(private PopUpService: PopUpService) {}
+  constructor(
+    private PopUpService: PopUpService,
+    private http: HttpService<any>
+  ) {}
   ngOnInit() {
     this.firstPopUp.get('country')?.valueChanges.subscribe((data) => {
       if (data) {
@@ -32,8 +36,15 @@ export class RegistrationComponent implements OnInit {
     this.PopUpService.updateItems(false);
     this.activePopUpId = 0;
   }
-  onSubmit(form: FormGroup) {
-    if (form.valid) {
+  onSubmit() {
+    if (this.firstPopUp.valid) {
+      this.http
+        .getData(
+          `https://83.222.9.120/v1/api/Auths/${this.firstPopUp.get('phone')}`
+        )
+        .subscribe((data) => {
+          console.log(data);
+        });
       this.activePopUpId++;
     }
   }

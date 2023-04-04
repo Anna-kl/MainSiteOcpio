@@ -85,7 +85,7 @@ export class PhoneInputComponent
             formattedInputValue = '+' + inputValue.substring(0, 16);
           }
           this.input.nativeElement.value = formattedInputValue;
-          this.onChange(formattedInputValue);
+          this.onChange(formattedInputValue.replace(/\D/g, ''));
         })
       )
       .subscribe();
