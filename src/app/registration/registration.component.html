@@ -11,7 +11,10 @@
       <div class="phone cont-horiz-start">
         <app-countryselect formControlName="country"></app-countryselect>
         <div class="v-line"></div>
-        <app-phone-input formControlName="phone"></app-phone-input>
+        <app-phone-input
+          formControlName="phone"
+          [mask]="mask"
+        ></app-phone-input>
       </div>
       <div class="cont-horiz-start">
         <div>

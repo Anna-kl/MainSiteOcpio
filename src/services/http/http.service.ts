@@ -13,7 +13,6 @@ export class HttpService<T> {
     const data = this.http.get<T[]>(api).pipe(
       map((response) => {
         this.updateItems(response);
-        console.log(response);
         return response;
       }),
       catchError(this.handleError<any>('GetData'))

@@ -30,6 +30,7 @@ import {
 export class PhoneInputComponent
   implements AfterViewInit, OnDestroy, ControlValueAccessor
 {
+  @Input() mask!: string;
   value = '';
   onChange = (value: string) => {};
   onTouched = () => {};
