@@ -47,7 +47,7 @@ export class CountryselectComponent
     this.onTouched();
   }
 
-  constructor(private httpService: HttpService<IData>) {}
+  constructor(private httpService: HttpService<IData[]>) {}
   writeValue(value: string): void {
     this.value = value;
   }
@@ -61,10 +61,10 @@ export class CountryselectComponent
   ngOnInit(): void {
     let subscription = this.httpService
       .getData('https://83.222.9.120/v1/api/Dictionaries/country')
-      .subscribe();
-    this.data$.subscribe((data) => {
-      this.onChange(data[0]);
-    });
+      .subscribe((data) => {
+        this.onChange(data[0]);
+        this.httpService.updateItems(data);
+      });
 
     this.subscriptions.push(subscription);
   }

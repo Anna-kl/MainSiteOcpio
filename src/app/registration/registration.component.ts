@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { HttpService } from 'src/services/http/http.service';
 import { PopUpService } from 'src/services/pop-up/pop-up.service';
 import { IData } from '../../ui/countryselect/countryselect.component';
@@ -9,8 +10,9 @@ import { IData } from '../../ui/countryselect/countryselect.component';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css'],
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, OnDestroy {
   activePopUpId = 0;
+  subscriptions: Subscription[] = [];
   mask = '';
   firstPopUp = new FormGroup({
     country: new FormControl({} as IData, Validators.required),
@@ -21,6 +23,7 @@ export class RegistrationComponent implements OnInit {
     private PopUpService: PopUpService,
     private http: HttpService<any>
   ) {}
+
   ngOnInit() {
     this.firstPopUp.get('country')?.valueChanges.subscribe((data) => {
       if (data) {
@@ -38,14 +41,22 @@ export class RegistrationComponent implements OnInit {
   }
   onSubmit() {
     if (this.firstPopUp.valid) {
-      this.http
+      let data$ = this.http
         .getData(
           `https://83.222.9.120/v1/api/Auths/${this.firstPopUp.get('phone')}`
         )
         .subscribe((data) => {
-          console.log(data);
+          console.log(data.code);
+          if (data.code === 200) {
+            this.activePopUpId++;
+          }
         });
-      this.activePopUpId++;
+      this.subscriptions.push(data$);
     }
+  }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((item) => {
+      item.unsubscribe();
+    });
   }
 }

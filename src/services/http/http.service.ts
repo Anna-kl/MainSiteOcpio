@@ -6,13 +6,12 @@ import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
   providedIn: 'root',
 })
 export class HttpService<T> {
-  items$: BehaviorSubject<T[]> = new BehaviorSubject<T[]>([]);
+  items$: BehaviorSubject<T> = new BehaviorSubject<T>({} as T);
 
   constructor(private http: HttpClient) {}
-  getData(api: string): Observable<T[]> {
-    const data = this.http.get<T[]>(api).pipe(
+  getData(api: string): Observable<T> {
+    const data = this.http.get<T>(api).pipe(
       map((response) => {
-        this.updateItems(response);
         return response;
       }),
       catchError(this.handleError<any>('GetData'))
@@ -20,11 +19,11 @@ export class HttpService<T> {
     return data;
   }
 
-  private updateItems(data: T[]): void {
+  updateItems(data: T): void {
     this.items$.next(data);
   }
 
-  getItems$(): BehaviorSubject<T[]> {
+  getItems$(): BehaviorSubject<T> {
     return this.items$;
   }
 
