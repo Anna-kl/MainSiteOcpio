@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PopUpService } from 'src/services/pop-up/pop-up.service';
 import { IData } from '../../ui/countryselect/countryselect.component';
 
@@ -32,7 +32,9 @@ export class RegistrationComponent implements OnInit {
     this.PopUpService.updateItems(false);
     this.activePopUpId = 0;
   }
-  onSubmit() {
-    console.log(this.firstPopUp.value);
+  onSubmit(form: FormGroup) {
+    if (form.valid) {
+      this.activePopUpId++;
+    }
   }
 }
