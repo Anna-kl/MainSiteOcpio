@@ -1,0 +1,136 @@
+<app-pop-up>
+  <div
+    class="cont-vert-around box2"
+    [ngClass]="{ hidden: activePopUpId !== 0 }"
+  >
+    <h2>
+      Войдите с помощью <br />
+      номера телефона
+    </h2>
+    <form [formGroup]="firstPopUp" (ngSubmit)="onSubmit()">
+      <div class="phone cont-horiz-start">
+        <app-countryselect formControlName="country"></app-countryselect>
+        <div class="v-line"></div>
+        <app-phone-input
+          formControlName="phone"
+          [mask]="mask"
+        ></app-phone-input>
+      </div>
+      <div class="cont-horiz-start">
+        <div>
+          <!--подкатегория -->
+          <input
+            class="custom-checkbox"
+            type="checkbox"
+            id="stapelnye-raboty"
+            name="#"
+            value="#"
+            formControlName="checkbox"
+          />
+          <label for="stapelnye-raboty">
+            <p>
+              Согласен с
+              <span style="color: #67c4b2"> правилами и условиями </span>
+            </p>
+          </label>
+        </div>
+      </div>
+    </form>
+    <div
+      class="btn2 button-text cont-vert"
+      style="width: 50%"
+      (click)="onSubmit()"
+    >
+      Далее
+    </div>
+  </div>
+  <!-- Second PopUp -->
+  <div
+    class="cont-vert-around box2"
+    [ngClass]="{ hidden: activePopUpId !== 1 }"
+  >
+    <div style="padding-top: 20px">
+      <h2>Мы отправили СМС код</h2>
+      <div class="cont-horiz-start">
+        <div
+          style="
+            font-family: 'Montserrat';
+            font-style: normal;
+            line-height: 130%;
+            color: #c0c5d5;
+          "
+        >
+          на номер:
+        </div>
+        <p class="phone-text">{{ firstPopUp.value.phone }}</p>
+      </div>
+    </div>
+    <form class="cont-horiz">
+      <input class="sms" type="text" placeholder="0" appAutoTab maxlength="1" />
+      <input class="sms" type="text" placeholder="0" appAutoTab maxlength="1" />
+      <input class="sms" type="text" placeholder="0" appAutoTab maxlength="1" />
+      <input class="sms" type="text" placeholder="0" appAutoTab maxlength="1" />
+    </form>
+    <div class="cont-vert">
+      <div class="btn-white" style="width: 100%">Прислать код повторно</div>
+      <div
+        class="btn2 button-text cont-vert"
+        style="width: 100%"
+        (click)="nextPopUp()"
+      >
+        Подтвердить
+      </div>
+    </div>
+  </div>
+  <!-- Third PopUp -->
+  <div
+    class="cont-vert-around box2"
+    [ngClass]="{ hidden: activePopUpId !== 2 }"
+  >
+    <div class="type-name">Представьтесь,&nbsp;пожалуйста</div>
+    <form>
+      <input class="fio fio-text" type="text" placeholder="Имя" />
+      <input class="fio fio-text" type="text" placeholder="Фамилия" />
+
+      <div class="cont-horiz-start">
+        <div>
+          <!-- Чекбокс -->
+          <input
+            class="custom-checkbox"
+            type="checkbox"
+            id="stapelnye-raboty"
+            name="#"
+            value="#"
+          />
+          <label for="stapelnye-raboty">
+            <p>
+              Согласен с
+              <span style="color: #67c4b2"> правилами и условиями </span>
+            </p>
+          </label>
+        </div>
+      </div>
+    </form>
+    <div class="btn2 button-text" style="width: 80%" (click)="nextPopUp()">
+      Продолжить
+    </div>
+  </div>
+  <!-- Fourth PopUp -->
+  <div class="cont-vert-around box" [ngClass]="{ hidden: activePopUpId !== 3 }">
+    <h1 style="margin-top: 20px">Отлично!</h1>
+    <p style="text-align: center; max-width: 326px">
+      Теперь вы можеже выбрать любую услугу и специалиста: по названию или найти
+      ближайших на карте
+    </p>
+    <img src="img/reg-ua/welcome.png" style="width: 180px; height: 180px" />
+    <div class="cont-horiz">
+      <div
+        class="btn3 button-text cont-vert"
+        style="margin-bottom: 20px"
+        (click)="closePopUp()"
+      >
+        Начать
+      </div>
+    </div>
+  </div>
+</app-pop-up>
